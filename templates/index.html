@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastritis Risk Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gastritis Risk Prediction</h1>
+            <p>Fill out the form below to check your risk of having gastritis</p>
+        </header>
+        
+        <main>
+            <form action="/predict" method="post" id="prediction-form">
+                <div class="form-group">
+                    <h2>Personal Information</h2>
+                    
+                    <div class="input-group">
+                        <label for="age_group">Age Group:</label>
+                        <select id="age_group" name="age_group" required>
+                            <option value="">Select your age group</option>
+                            <option value="18-25">18-25</option>
+                            <option value="26-35">26-35</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select your gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="university_student">Are you a university student?</label>
+                        <select id="university_student" name="university_student" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <h2>Eating Habits</h2>
+                    
+                    <div class="input-group">
+                        <label for="meals_per_day">How many meals do you eat per day?</label>
+                        <select id="meals_per_day" name="meals_per_day" required>
+                            <option value="">Select option</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="More than 3">More than 3</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="spicy_food">Do you consume spicy/oily food?</label>
+                        <select id="spicy_food" name="spicy_food" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="caffeinated_drinks">Do you consume caffeinated drinks?</label>
+                        <select id="caffeinated_drinks" name="caffeinated_drinks" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="alcohol">Do you consume alcohol?</label>
+                        <select id="alcohol" name="alcohol" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="instant_food">How often do you eat instant food?</label>
+                        <select id="instant_food" name="instant_food" required>
+                            <option value="">Select frequency</option>
+                            <option value="Daily">Daily</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Monthly">Monthly</option>
+                            <option value="No">Never</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="snacks">How often do you eat snacks between meals?</label>
+                        <select id="snacks" name="snacks" required>
+                            <option value="">Select frequency</option>
+                            <option value="Daily">Daily</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="No">Never</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <h2>Lifestyle Factors</h2>
+                    
+                    <div class="input-group">
+                        <label for="stress">Do you experience stress?</label>
+                        <select id="stress" name="stress" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="stress_level">What is your stress level? (1-5)</label>
+                        <select id="stress_level" name="stress_level" required>
+                            <option value="">Select level</option>
+                            <option value="1">1 (Very Low)</option>
+                            <option value="2">2 (Low)</option>
+                            <option value="3">3 (Medium)</option>
+                            <option value="4">4 (High)</option>
+                            <option value="5">5 (Very High)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="sleep_hours">How many hours do you sleep per day?</label>
+                        <select id="sleep_hours" name="sleep_hours" required>
+                            <option value="">Select hours</option>
+                            <option value="Less than 4 hours">Less than 4 hours</option>
+                            <option value="4-6 hours">4-6 hours</option>
+                            <option value="6-8 hours">6-8 hours</option>
+                            <option value="More than 8 hours">More than 8 hours</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="exercise">Do you exercise regularly?</label>
+                        <select id="exercise" name="exercise" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="dieting">Are you on a diet?</label>
+                        <select id="dieting" name="dieting" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Check My Risk</button>
+                    <button type="reset" class="btn-reset">Reset Form</button>
+                </div>
+            </form>
+        </main>
+        
+        <footer>
+            <p>This tool provides an estimate based on data models and is not a substitute for professional medical advice.</p>
+
+            <p>Created by Isara Madunika, BSc (Hons) in Data Science, NSBM Green University.</p>
+            
+            <p>&copy; 2025 Gastritis Risk Prediction Tool</p>
+            
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
