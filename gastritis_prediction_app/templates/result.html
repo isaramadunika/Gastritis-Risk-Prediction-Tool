@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastritis Prediction Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Your Gastritis Risk Assessment</h1>
+        </header>
+        
+        <main class="result-main">
+            <div class="result-card">
+                <h2>Prediction Result</h2>
+                
+                <div class="prediction-result {% if prediction == 'Yes' %}high-risk{% else %}low-risk{% endif %}">
+                    <div class="result-heading">
+                        {% if prediction == 'Yes' %}
+                            You may have gastritis
+                        {% else %}
+                            You likely don't have gastritis
+                        {% endif %}
+                    </div>
+                    
+                    <div class="probability-container">
+                        <div class="probability-bar">
+                            <div class="probability-fill" style="width: {{ probability }}%"></div>
+                        </div>
+                        <div class="probability-label">
+                            {{ probability }}% chance of having gastritis
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recommendation">
+                    {% if probability > 70 %}
+                        <h3>High Risk</h3>
+                        <p>Your results indicate a high risk of gastritis. We recommend that you consult with a healthcare professional for a proper diagnosis and treatment plan.</p>
+                    {% elif probability > 40 %}
+                        <h3>Moderate Risk</h3>
+                        <p>Your results indicate a moderate risk of gastritis. Consider lifestyle changes and consult with a healthcare professional if you experience symptoms like stomach pain, bloating, or nausea.</p>
+                    {% else %}
+                        <h3>Low Risk</h3>
+                        <p>Your results indicate a low risk of gastritis. Continue to maintain healthy habits to keep your digestive system healthy.</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="input-summary">
+                <h3>Your Input Summary</h3>
+                <table>
+                    <tr>
+                        <th>Factor</th>
+                        <th>Your Response</th>
+                    </tr>
+                    <tr>
+                        <td>Age Group</td>
+                        <td>{{ user_data['Age Group '] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>{{ user_data['Gender  '] }}</td>
+                    </tr>
+                    <tr>
+                        <td>University Student</td>
+                        <td>{% if user_data['University Student'] == 1 %}Yes{% else %}No{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td>Meals per day</td>
+                        <td>{{ user_data['Meals per day'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Spicy/Oily Food</td>
+                        <td>{% if user_data['Spicy/Oily Food Consumption'] == 1 %}Yes{% else %}No{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td>Caffeinated Drinks</td>
+                        <td>{% if user_data['Caffeinated Drinks'] == 1 %}Yes{% else %}No{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td>Alcohol</td>
+                        <td>{% if user_data['Alcohol'] == 1 %}Yes{% else %}No{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td>Stress</td>
+                        <td>{% if user_data['Stress (Yes/No)'] == 1 %}Yes{% else %}No{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td>Stress Level</td>
+                        <td>{{ user_data['Stress Level (1–5)'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Sleep Hours</td>
+                        <td>{{ user_data['Sleep Hours'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Exercise</td>
+                        <td>{% if user_data['Exercise'] == 1 %}Yes{% else %}No{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td>Dieting</td>
+                        <td>{% if user_data['Dieting'] == 1 %}Yes{% else %}No{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td>Instant Food Frequency</td>
+                        <td>{{ user_data['Instant Food Frequency'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Snacks between Meals</td>
+                        <td>{{ user_data['Snacks between Meals'] }}</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="actions">
+                <a href="/" class="btn-primary">Try Another Assessment</a>
+            </div>
+        </main>
+        
+        <footer>
+            <p>This tool provides an estimate based on data models and is not a substitute for professional medical advice.</p>
+
+            <p>Created by Isara Madunika, BSc (Hons) in Data Science, NSBM Green University.</p>
+            
+            <p>&copy; 2025 Gastritis Risk Prediction Tool</p>
+            
+        </footer>
+    </div>
+</body>
+</html>
